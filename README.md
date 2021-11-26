@@ -1,6 +1,6 @@
-[![GoDoc](https://godoc.org/github.com/xeipuuv/gojsonschema?status.svg)](https://godoc.org/github.com/xeipuuv/gojsonschema)
+[![GoDoc](https://godoc.org/github.com/golangid/gojsonschema?status.svg)](https://godoc.org/github.com/golangid/gojsonschema)
 [![Build Status](https://travis-ci.org/xeipuuv/gojsonschema.svg)](https://travis-ci.org/xeipuuv/gojsonschema)
-[![Go Report Card](https://goreportcard.com/badge/github.com/xeipuuv/gojsonschema)](https://goreportcard.com/report/github.com/xeipuuv/gojsonschema)
+[![Go Report Card](https://goreportcard.com/badge/github.com/golangid/gojsonschema)](https://goreportcard.com/report/github.com/golangid/gojsonschema)
 
 # gojsonschema
 
@@ -17,7 +17,7 @@ References :
 ## Installation
 
 ```
-go get github.com/xeipuuv/gojsonschema
+go get github.com/golangid/gojsonschema
 ```
 
 Dependencies :
@@ -35,7 +35,7 @@ package main
 
 import (
     "fmt"
-    "github.com/xeipuuv/gojsonschema"
+    "github.com/golangid/gojsonschema"
 )
 
 func main() {
