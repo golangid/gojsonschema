@@ -203,8 +203,8 @@ func (v *Result) AddError(err ResultError, details ErrorDetails) {
 	v.errors = append(v.errors, err)
 }
 
-func (v *Result) addInternalError(err ResultError, context *JsonContext, value interface{}, details ErrorDetails) {
-	newError(err, context, value, Locale, details)
+func (v *Result) addInternalError(currentSubSchema *subSchema, err ResultError, context *JsonContext, value interface{}, details ErrorDetails) {
+	newError(currentSubSchema, err, context, value, Locale, details)
 	v.errors = append(v.errors, err)
 	v.score -= 2 // results in a net -1 when added to the +1 we get at the end of the validation function
 }

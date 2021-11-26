@@ -912,6 +912,18 @@ func (d *Schema) parseSchema(documentNode interface{}, currentSchema *subSchema)
 		}
 	}
 
+	if existsMapKey(m, KEY_CUSTOM_ERROR_MESSAGE) {
+		if isKind(m[KEY_CUSTOM_ERROR_MESSAGE], reflect.String) {
+			customErrorMessage, _ := m[KEY_CUSTOM_ERROR_MESSAGE].(string)
+			currentSchema.customErrorMessage = &customErrorMessage
+		} else {
+			return errors.New(formatErrorDescription(
+				"Custom error message must string",
+				ErrorDetails{"key": KEY_CUSTOM_ERROR_MESSAGE},
+			))
+		}
+	}
+
 	if *currentSchema.draft >= Draft7 {
 		if existsMapKey(m, KEY_IF) {
 			if isKind(m[KEY_IF], reflect.Map, reflect.Bool) {

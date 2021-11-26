@@ -210,17 +210,22 @@ type (
 )
 
 // newError takes a ResultError type and sets the type, context, description, details, value, and field
-func newError(err ResultError, context *JsonContext, value interface{}, locale locale, details ErrorDetails) {
+func newError(currentSubSchema *subSchema, err ResultError, context *JsonContext, value interface{}, locale locale, details ErrorDetails) {
 	var t string
 	var d string
+
+	isReplaceError := true
+
 	switch err.(type) {
 	case *FalseError:
 		t = "false"
 		d = locale.False()
 	case *RequiredError:
+		isReplaceError = false
 		t = "required"
 		d = locale.Required()
 	case *InvalidTypeError:
+		isReplaceError = false
 		t = "invalid_type"
 		d = locale.InvalidType()
 	case *NumberAnyOfError:
@@ -310,6 +315,11 @@ func newError(err ResultError, context *JsonContext, value interface{}, locale l
 	case *ConditionElseError:
 		t = "condition_else"
 		d = locale.ConditionElse()
+	}
+
+	if isReplaceError && currentSubSchema.customErrorMessage != nil {
+		t = "custom_error"
+		d = *currentSubSchema.customErrorMessage
 	}
 
 	err.SetType(t)

@@ -27,9 +27,10 @@
 package gojsonschema
 
 import (
-	"github.com/xeipuuv/gojsonreference"
 	"math/big"
 	"regexp"
+
+	"github.com/xeipuuv/gojsonreference"
 )
 
 // Constants
@@ -74,6 +75,7 @@ const (
 	KEY_IF                    = "if"
 	KEY_THEN                  = "then"
 	KEY_ELSE                  = "else"
+	KEY_CUSTOM_ERROR_MESSAGE  = "errorMessage"
 )
 
 type subSchema struct {
@@ -137,6 +139,8 @@ type subSchema struct {
 	// validation : all
 	_const *string //const is a golang keyword
 	enum   []string
+
+	customErrorMessage *string
 
 	// validation : subSchema
 	oneOf []*subSchema
