@@ -225,7 +225,6 @@ func newError(currentSubSchema *subSchema, err ResultError, context *JsonContext
 		t = "required"
 		d = locale.Required()
 	case *InvalidTypeError:
-		isReplaceError = false
 		t = "invalid_type"
 		d = locale.InvalidType()
 	case *NumberAnyOfError:
